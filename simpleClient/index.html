@@ -11,6 +11,9 @@
       var b = 24 + 12;
       var c = x + 317;
       var res = a + b + c;
+
+      var userInput = document.getElementById("equa").value;
+      res = eval(userInput);
       document.getElementById("result").innerHTML = "Result is: " + res;
       document.getElementById("result").style.fontSize = "100px";
     }
@@ -24,7 +27,7 @@
 
 <body> 
   <input id='equa'>
-  <a href='javascript:start()' style='color: red; background: gray; border: 1ps solid; border-radius: 5px; padding: 10px;text-decoration: none'> Calculate </a>
+  <a href='javascript:start()' style='color: red; background: gray; border: 1px solid; border-radius: 5px; padding: 10px;text-decoration: none'> Calculate </a>
   <p id='result' class='para'> </p>
 </body>
 </html>
