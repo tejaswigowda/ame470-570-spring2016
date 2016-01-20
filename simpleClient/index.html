@@ -11,15 +11,20 @@
       var b = 24 + 12;
       var c = x + 317;
       var res = a + b + c;
-      return res;
+      document.getElementById("result").innerHTML = "Result is: " + res;
+      document.getElementById("result").style.fontSize = "100px";
     }
   </script>
   <style>
+  p{
+      text-align: center;
+  }
   </style>
 </head>
 
 <body> 
-  <a href='javascript:start()' style=''> Execute Function </a>
+  <input id='equa'>
+  <a href='javascript:start()' style='color: red; background: gray; border: 1ps solid; border-radius: 5px; padding: 10px;text-decoration: none'> Calculate </a>
   <p id='result' class='para'> </p>
 </body>
 </html>
