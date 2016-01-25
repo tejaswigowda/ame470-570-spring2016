@@ -3,7 +3,14 @@
 <head>
   <title> Simple JS </title>
   <script>
-    function start()
+    var log = {
+      input: null,
+      output: null,
+      printLog: function(){
+        alert(log.input + " = " + log.output);
+      }
+    };
+    var start = function()
     {
       var x = 100;
       var y = 200;
@@ -14,6 +21,8 @@
 
       var userInput = document.getElementById("equa").value;
       res = eval(userInput);
+      log.input = userInput;
+      log.output = res;
       document.getElementById("result").innerHTML = "Result is: " + res;
       document.getElementById("result").style.fontSize = "100px";
     }
