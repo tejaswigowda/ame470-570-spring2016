@@ -8,11 +8,15 @@
     var start = function()
     {
       var userInput = document.getElementById("equa").value;
-      res = eval(userInput);
-      log.input = userInput;
-      log.output = res;
-      document.getElementById("result").innerHTML = "Result is: " + res;
-      document.getElementById("result").style.fontSize = "100px";
+      var url = "./eval?code=" + encodeURIComponent(userInput) 
+      var callback = function(data){
+        var res = data;
+        log.input = userInput;
+        log.output = res;
+        document.getElementById("result").innerHTML = "Result is: " + res;
+        document.getElementById("result").style.fontSize = "100px";
+      }
+      loadURL(url, callback);
     }
   </script>
   <style>
