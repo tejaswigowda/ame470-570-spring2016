@@ -12,7 +12,7 @@ app.get("/", function (req, res) {
 
 app.get("/eval", function (req, res) {
     console.log(req.query);
-    var userInput = req.query.code;
+    var userInput = decodeURIComponent(req.query.code);
     var result  = eval(userInput);
     // calculate res here
     //
