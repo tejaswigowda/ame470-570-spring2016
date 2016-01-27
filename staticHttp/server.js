@@ -12,6 +12,7 @@ app.get("/", function (req, res) {
 
 app.get("/eval", function (req, res) {
     console.log(req.query);
+    var userInput = req.query.code;
     var result  = 0;
     // calculate res here
     //
