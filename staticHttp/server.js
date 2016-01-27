@@ -10,6 +10,10 @@ app.get("/", function (req, res) {
       res.redirect("/index.html");
 });
 
+app.get("/eval", function (req, res) {
+    console.log(req.query);
+});
+
 app.use(methodOverride());
 app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));
