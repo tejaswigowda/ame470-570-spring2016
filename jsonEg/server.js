@@ -43,7 +43,8 @@ app.get("/getJSObj", function (req, res) {
 
 
 app.get("/getJSObjFromArray", function (req, res) {
-     res.send(JSON.stringify(exObj))// send response body
+  var index = parseInt(req.query.id)
+     res.send(JSON.stringify(objArray[index]))// send response body
 });
 
 app.use(methodOverride());
