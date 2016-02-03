@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Simple JS Eval</title>
+  <script src='script.js'> </script>
+  <script>
+
+    var start = function()
+    {
+      var userInput = document.getElementById("equa").value;
+      var url = "./eval?code=" + encodeURIComponent(userInput);
+      console.log(url);
+      var callback = function(data){
+        var res = data;
+        document.getElementById("result").innerHTML = "Result is: " + res;
+        document.getElementById("result").style.fontSize = "100px";
+      }
+      loadURL(url, callback);
+    }
+  </script>
+  <style>
+  p{
+      text-align: center;
+  }
+  </style>
+</head>
+
+<body> 
+<textarea id='equa'> </textarea>
+  <a href='javascript:start()' style='color: red; background: gray; border: 1px solid; border-radius: 5px; padding: 10px;text-decoration: none'> Calculate </a>
+  <p id='result' class='para'> </p>
+</body>
+</html>
