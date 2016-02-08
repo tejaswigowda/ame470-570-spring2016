@@ -21,11 +21,38 @@
   p{
       text-align: center;
   }
+  body{
+    margin: 0px;
+  }
+  #myFeedWrapper, #currFeedWrapper{
+    display: inline-block;
+    width: 25%;
+    vertical-align: top;
+    background: #ddd;
+    min-height: 100%;
+  }
+  #selFeedWrapper{
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
+    min-height: 100%;
+  }
   </style>
 </head>
 
 <body> 
-  <a href='javascript:start()' style='color: red; background: gray; border: 1px solid; border-radius: 5px; padding: 10px;text-decoration: none'> Calculate </a>
-  <p id='result' class='para'> </p>
+  <div id='myFeedWrapper'>
+    <h1> My Feeds </h1>
+    <a href='javascript:addFeed()'> Add New </a>
+    <div id='myFeedList'> </div>
+  </div>
+  <div id='currFeedWrapper'>
+    <h1> </h1>
+    <div id='currFeedList'> </div>
+ </div>
+  <div id='selFeedWrapper'> 
+    <h1> </h1>
+    <div id='feedDetails'> </div>
+  </div>
 </body>
 </html>
