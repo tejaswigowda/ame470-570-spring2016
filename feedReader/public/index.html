@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Simple JS Eval</title>
+  <script src='script.js'> </script>
+  <script>
+
+    var start = function()
+    {
+      var link = "https%3A%2F%2Fitunes.apple.com%2Fus%2Frss%2Ftoptextbooks%2Flimit%3D100%2Fjson";
+      var url = "./getRSSFeed?link=" + encodeURIComponent(link);
+      console.log(url);
+      var callback = function(data){
+        var res = JSON.parse(data);
+        console.log(res);
+      }
+      loadURL(url, callback);
+    }
+  </script>
+  <style>
+  p{
+      text-align: center;
+  }
+  </style>
+</head>
+
+<body> 
+  <a href='javascript:start()' style='color: red; background: gray; border: 1px solid; border-radius: 5px; padding: 10px;text-decoration: none'> Calculate </a>
+  <p id='result' class='para'> </p>
+</body>
+</html>
