@@ -5,17 +5,50 @@ var errorHandler = require('errorhandler');
 var methodOverride = require('method-override');
 var hostname = process.env.HOSTNAME || 'localhost';
 var port = 8080;
+var db = require('./node_modules/mongoskin').db('mongodb://user:password@127.0.0.1:27017/RSSFeed');
 
 app.get("/", function (req, res) {
       res.redirect("/index.html");
 });
 
-app.get("/getRSSFeed", function (req, res) {
+app.get("/getAllPosts", function (req, res) {
     var link = decodeURIComponent(req.query.link);
     readURL(link, function(data){
      res.send(data); // send response body
     });
 });
+
+app.get('/addOrEditSub', function(req, res){
+      var info = req.query;
+
+      db.collection('subs').findOne({id:info.id}, function(err, result) {
+        if(result){
+          var temp = Object.keys(info);
+          var key;
+          for(var t = 0; t <  temp.length; t++){
+            key = temp[t];
+            result[key] = info[key];
+          }
+          db.collection('subs').save(result, function(err2) {
+            if (err2) {
+              res.send("0");            
+            } else {        
+              res.send("1");
+            }   
+          }); 
+        }
+        else{
+          db.collection('subs').insert(info, function(err3, r3) {
+            if (err3) {
+              res.send("0");            
+            }
+             else {       
+              res.send("1");
+            }   
+          });
+        }
+      });
+  });
 
 function readURL(url, cb) {
   var data = "";
