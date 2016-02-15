@@ -5,7 +5,7 @@ var errorHandler = require('errorhandler');
 var methodOverride = require('method-override');
 var hostname = process.env.HOSTNAME || 'localhost';
 var port = 8080;
-var db = require('./node_modules/mongoskin').db('mongodb://user:password@127.0.0.1:27017/RSSFeed');
+var db = require('./node_modules/mongoskin').db('mongodb://user:password@127.0.0.1:27017/RSSFEED');
 
 app.get("/", function (req, res) {
       res.redirect("/index.html");
@@ -18,10 +18,22 @@ app.get("/getAllPosts", function (req, res) {
     });
 });
 
+app.get('/listSubs', function(req, res){
+      var info = req.query;
+      db.collection('subs').find({user:info.user}).toArray(function(err, result) {
+        if(err){
+          res.send("[]")
+        }
+        else{
+          res.send(JSON.stringify(result));
+        }
+      });
+
+});
+
 app.get('/addOrEditSub', function(req, res){
       var info = req.query;
-
-      db.collection('subs').findOne({id:info.id}, function(err, result) {
+      db.collection('subs').findOne({link:info.link}, function(err, result) {
         if(result){
           var temp = Object.keys(info);
           var key;
