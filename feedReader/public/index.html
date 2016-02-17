@@ -5,17 +5,23 @@
   <script src='script.js'> </script>
   <script>
 
-    var start = function()
-    {
-      var link = "https%3A%2F%2Fitunes.apple.com%2Fus%2Frss%2Ftoptextbooks%2Flimit%3D100%2Fjson";
-      var url = "./getRSSFeed?link=" + encodeURIComponent(link);
-      console.log(url);
-      var callback = function(data){
-        var res = JSON.parse(data);
-        console.log(res);
-      }
-      loadURL(url, callback);
+var theUser = "test";
+
+var startUp = function(){
+}
+
+var loadMySubs = function()
+{
+  var url = "./listSubs?user=" + theUser;
+  console.log(url);
+  loadURL(url, function(data){
+    var mySubs = JSON.parse(data);
+    if(mySubs.length == 0){
+      document.getElementById("myFeedList").innerHTML = "No subsciptions" 
     }
+  });
+
+}
   </script>
   <style>
   p{
@@ -40,7 +46,7 @@
   </style>
 </head>
 
-<body> 
+<body onload='startUp()'> 
   <div id='myFeedWrapper'>
     <h1> My Feeds </h1>
     <a href='javascript:addFeed()'> Add New </a>

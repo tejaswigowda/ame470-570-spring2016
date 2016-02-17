@@ -31,6 +31,19 @@ app.get('/listSubs', function(req, res){
 
 });
 
+
+app.get('/deleteSub', function(req, res){
+      var info = req.query;
+      db.collection('subs').remove({user:info.user, id:info.id}, function(err, result) {
+        if(err){
+          res.send("0")
+        }
+        else{
+          res.send("1");
+        }
+      });
+});
+
 app.get('/addOrEditSub', function(req, res){
       var info = req.query;
       db.collection('subs').findOne({link:info.link}, function(err, result) {
