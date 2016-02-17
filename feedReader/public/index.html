@@ -6,8 +6,10 @@
   <script>
 
 var theUser = "test";
+var allSubs = null;
 
 var startUp = function(){
+  loadMySubs();
 }
 
 var loadMySubs = function()
@@ -16,8 +18,17 @@ var loadMySubs = function()
   console.log(url);
   loadURL(url, function(data){
     var mySubs = JSON.parse(data);
+    allSubs = mySubs;
     if(mySubs.length == 0){
       document.getElementById("myFeedList").innerHTML = "No subsciptions" 
+    }
+    else{
+      var markUp = "";
+      for (var i = 0; i < mySubs.length; i++){
+        var aFeed = mySubs[i];
+        markUp += "<a href='javascript:aSubSelected(" + i + ")' class='listItem'>" + aFeed.id + " : " + aFeed.link +" </a>";
+      }
+      document.getElementById("myFeedList").innerHTML = markUp;
     }
   });
 
