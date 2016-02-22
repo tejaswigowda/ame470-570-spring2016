@@ -12,10 +12,22 @@ var startUp = function(){
   loadMySubs();
 }
 
+var addFeed = function()
+{
+  var link = prompt("Add New Feed URL (json)");
+  if(link == null) return;
+  var url = "./addOrEditSub?user=" + theUser;
+  url += "&link=" + encodeURIComponent(link);
+  url += "&date=" + new Date().getTime();
+  url += "&id=" + theUser + new Date().getTime();
+  loadURL(url, function(data){
+    loadMySubs();
+  });
+}
+
 var loadMySubs = function()
 {
   var url = "./listSubs?user=" + theUser;
-  console.log(url);
   loadURL(url, function(data){
     var mySubs = JSON.parse(data);
     allSubs = mySubs;
@@ -54,13 +66,17 @@ var loadMySubs = function()
     vertical-align: top;
     min-height: 100%;
   }
+  #myFeedList{
+  }
+  .listItem{
+  }
   </style>
 </head>
 
 <body onload='startUp()'> 
   <div id='myFeedWrapper'>
     <h1> My Feeds </h1>
-    <a href='javascript:addFeed()'> Add New </a>
+    <a href='javascript:addFeed()' style='text-decoration: none;padding: 5px; background: white; color: black; border-radius: 5px; border 1px solid black;margin:10px; box-shadow: 0px 0px 2px;'> Add New </a>
     <div id='myFeedList'> </div>
   </div>
   <div id='currFeedWrapper'>
