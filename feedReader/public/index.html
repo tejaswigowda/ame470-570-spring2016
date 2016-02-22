@@ -8,6 +8,20 @@
 var theUser = "test";
 var allSubs = null;
 
+var aSubSelected = function(index){
+  var list = document.getElementById("myFeedList").getElementsByClassName("listItem")
+  for(var i = 0; i < list.length; i++){
+    if(i == index){
+      list[i].style.color = "red";
+      list[i].style.backgroundColor= "white";
+    }
+    else{
+      list[i].style.color = "";
+      list[i].style.backgroundColor= "";
+    }
+  }
+}
+
 var startUp = function(){
   loadMySubs();
 }
@@ -67,8 +81,14 @@ var loadMySubs = function()
     min-height: 100%;
   }
   #myFeedList{
+    margin-top: 10px;
   }
   .listItem{
+    display: block;
+    padding: 5px;
+    white-space: word-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   </style>
 </head>
