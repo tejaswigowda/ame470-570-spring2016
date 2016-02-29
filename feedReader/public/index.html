@@ -26,8 +26,9 @@ var aSubSelected = function(index){
   var link = allSubs[index].link;
   var url = "./getAllPosts?link=" + link;
   loadURL(url, function(data){
+    var title = JSON.parse(data).feed.title.label;
     postObjList = JSON.parse(data).feed.entry;
-    var markUp = "";
+    var markUp = "<h1>" + title + "</h1>";
     for (var i = 0; i < postObjList.length; i++){
         var aPost = postObjList[i];
         markUp += "<a href='javascript:aPostSelected(" + i + ")' class='listItem'>" + aPost.title.label +" </a>";
