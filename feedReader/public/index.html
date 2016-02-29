@@ -37,6 +37,31 @@ var aSubSelected = function(index){
   });
 }
 
+var aPostSelected = function(index){
+  var list = document.getElementById("currFeedWrapper").getElementsByClassName("listItem")
+  for(var i = 0; i < list.length; i++){
+    if(i == index){
+      list[i].style.color = "red";
+      list[i].style.backgroundColor= "white";
+    }
+    else{
+      list[i].style.color = "";
+      list[i].style.backgroundColor= "";
+    }
+  }
+  var postObj = postObjList[index]
+  var markUp = "";
+  markUp += "<h1>" + postObj.title.label + "</h1>";
+  markUp += "<h2>" + postObj["im:artist"].label + "</h1>";
+  markUp += "<img src='" + postObj["im:image"][0].label + "'>"
+  var price = postObj["im:price"].label;
+  if(price.toLowerCase() === "get") price = "$0.00";
+  markUp += "<i>" + price  + "</i>";
+
+  document.getElementById("selFeedWrapper").innerHTML = markUp;
+}
+
+
 var startUp = function(){
   loadMySubs();
 }
