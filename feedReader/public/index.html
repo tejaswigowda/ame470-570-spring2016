@@ -3,12 +3,13 @@
 <head>
   <title> Simple JS Eval</title>
   <script src='script.js'> </script>
-  <script>
   <script src='jquery-2.2.1.min.js'> </script>
   <script>
 
 var theUser = "test";
 var allSubs = null;
+var postObjList = null;
+var debug = null;
 
 var aSubSelected = function(index){
   var list = document.getElementById("myFeedList").getElementsByClassName("listItem")
@@ -22,6 +23,17 @@ var aSubSelected = function(index){
       list[i].style.backgroundColor= "";
     }
   }
+  var link = allSubs[index].link;
+  var url = "./getAllPosts?link=" + link;
+  loadURL(url, function(data){
+    postObjList = JSON.parse(data).feed.entry;
+    var markUp = "";
+    for (var i = 0; i < postObjList.length; i++){
+        var aPost = postObjList[i];
+        markUp += "<a href='javascript:aPostSelected(" + i + ")' class='listItem'>" + aPost.title.label +" </a>";
+    }
+    document.getElementById("currFeedWrapper").innerHTML = markUp;
+  });
 }
 
 var startUp = function(){
