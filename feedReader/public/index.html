@@ -148,16 +148,31 @@ var loadMySubs = function()
   body{
     margin: 0px;
   }
+  .bigScreen #myFeedWrapper, .bigScreen #currFeedWrapper{
+    width: 25%;
+  }
+
+  .smallScreen #myFeedWrapper, .smallScreen #currFeedWrapper{
+    width: 100%;
+  }
+
   #myFeedWrapper, #currFeedWrapper{
     display: inline-block;
-    width: 25%;
     vertical-align: top;
     background: #ddd;
     min-height: 100%;
   }
+
+  .bigScreen #selFeedWrapper{
+    width: 48%;
+  }
+
+  .smallScreen #selFeedWrapper{
+    width: 100%;
+  }
+
   #selFeedWrapper{
     display: inline-block;
-    width: 48%;
     vertical-align: top;
     min-height: 100%;
   }
