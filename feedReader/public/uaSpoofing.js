@@ -1,5 +1,18 @@
+var ENV = {
+  device:{
+    iOS: false,
+    android: false,
+    iPad: false,
+    touchSupport: false,
+  },
+  screen:{
+    height: 0,
+    width: 0,
+    small: false
+  }
+}
 
-function (){
+function spoofUserAgent(){
     var agent = navigator.userAgent.toLowerCase();
 
     if( agent.indexOf('iphone') != -1 || agent.indexOf('ipod') != -1) {
@@ -39,18 +52,6 @@ function (){
       ENV.screen.height = $(window).height();
       ENV.screen.width = $(window).width();
     }
-    var realHeight;
-    var realWidth;
-
-    var aspectRatio = ENV.screen.width / ENV.screen.height;
-
-
-    if (aspectRatio > 1){
-      ENV.screen.orientation = "landscape";
-    }
-    else{
-      ENV.screen.orientation = "portrait";
-    } 
 
     if(ENV.device.touchSupport){
       if (ENV.screen.width < 640 || ENV.screen.height < 480){
@@ -63,4 +64,40 @@ function (){
     else{
       ENV.screen.small = false;
     } 
+
+    assignClassNames()
   }
+
+function assignClassNames()
+{
+  var cn = "";
+  // do something
+  if(ENV.screen.small){
+     cn += " smallScreen";
+  }
+  else{
+     cn += " bigScreen";
+  }
+
+  if(ENV.device.touchSupport){
+     cn += " touchSupport";
+  }
+  else{
+     cn += " mouseSupport";
+  }
+
+  if(ENV.device.android){
+     cn += " android";
+  }
+
+  if(ENV.device.iPad){
+     cn += " iPad";
+  }
+
+  if(ENV.device.iOS){
+     cn += " iOS";
+  }
+  $("body").addClass(cn)
+
+}
+
