@@ -72,10 +72,22 @@ var aSubSelected = function(index){
         var aPost = postObjList[i];
         markUp += "<a href='javascript:aPostSelected(" + i + ")' class='listItem'>" + aPost.title.label +" </a>";
     }
-    document.getElementById("currFeedWrapper").innerHTML = markUp;
+    document.getElementById("currFeedWrapper").innerHTML = 
+     "<a href='javascript:backToMyFeeds()' class='backButton'> Back </a>" + markUp;
+      if(ENV.screen.small){
+        $("#myFeedWrapper, #selFeedWrapper").fadeOut();
+        $("#currFeedWrapper").fadeIn();
+      }
+
   });
 }
 
+function backToMyFeeds(){
+}
+
+function backToCurrFeeds()
+{
+}
 var aPostSelected = function(index){
   var list = document.getElementById("currFeedWrapper").getElementsByClassName("listItem")
   for(var i = 0; i < list.length; i++){
@@ -97,7 +109,8 @@ var aPostSelected = function(index){
   if(price.toLowerCase() === "get") price = "$0.00";
   markUp += "<i>" + price  + "</i>";
 
-  document.getElementById("selFeedWrapper").innerHTML = markUp;
+  document.getElementById("selFeedWrapper").innerHTML =
+   "<a href='javascript:backToCurrFeeds()' class='backButton'> Back </a>"+  markUp;
 }
 
 
@@ -206,7 +219,7 @@ var loadMySubs = function()
     <div id='myFeedList'> </div>
   </div>
   <div id='currFeedWrapper'>
-    <a href='javascript:backToMyFeeds()' class='backButton'> Back </a>
+    
     <h1> </h1>
     <div id='currFeedList'> </div>
  </div>
