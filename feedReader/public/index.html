@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title> Simple JS Eval</title>
   <script src='script.js'> </script>
@@ -103,8 +103,8 @@ var aPostSelected = function(index){
 
 var startUp = function(){
   spoofUserAgent();
-  showLoginModal();
- // loadMySubs();
+  //showLoginModal();
+  loadMySubs();
 }
 
 var addFeed = function()
@@ -136,6 +136,10 @@ var loadMySubs = function()
         markUp += "<a href='javascript:aSubSelected(" + i + ")' class='listItem'>" + aFeed.id + " : " + aFeed.link +" </a>";
       }
       document.getElementById("myFeedList").innerHTML = markUp;
+      if(ENV.screen.small){
+        $("#currFeedWrapper, #selFeedWrapper").fadeOut();
+        $("#myFeedWrapper").fadeIn();
+      }
     }
   });
 
@@ -154,6 +158,11 @@ var loadMySubs = function()
 
   .smallScreen #myFeedWrapper, .smallScreen #currFeedWrapper{
     width: 100%;
+    position: absolute;
+  }
+  .smallScreen #selFeedWrapper{
+    width: 100%;
+    position: absolute;
   }
 
   #myFeedWrapper, #currFeedWrapper{
@@ -167,9 +176,6 @@ var loadMySubs = function()
     width: 48%;
   }
 
-  .smallScreen #selFeedWrapper{
-    width: 100%;
-  }
 
   #selFeedWrapper{
     display: inline-block;
@@ -186,6 +192,10 @@ var loadMySubs = function()
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .bigScreen .backButton{
+    display: none;
+  }
+
   </style>
 </head>
 
@@ -196,10 +206,12 @@ var loadMySubs = function()
     <div id='myFeedList'> </div>
   </div>
   <div id='currFeedWrapper'>
+    <a href='javascript:backToMyFeeds()' class='backButton'> Back </a>
     <h1> </h1>
     <div id='currFeedList'> </div>
  </div>
   <div id='selFeedWrapper'> 
+    <a href='javascript:backToCurrFeeds()' class='backButton'> Back </a>
     <h1> </h1>
     <div id='feedDetails'> </div>
   </div>
