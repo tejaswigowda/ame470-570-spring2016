@@ -83,11 +83,20 @@ var aSubSelected = function(index){
 }
 
 function backToMyFeeds(){
+      if(ENV.screen.small){
+        $("#currFeedWrapper, #selFeedWrapper").fadeOut();
+        $("#myFeedWrapper").fadeIn();
+      }
 }
 
 function backToCurrFeeds()
 {
+      if(ENV.screen.small){
+        $("#myFeedWrapper, #selFeedWrapper").fadeOut();
+        $("#currFeedWrapper").fadeIn();
+      }
 }
+
 var aPostSelected = function(index){
   var list = document.getElementById("currFeedWrapper").getElementsByClassName("listItem")
   for(var i = 0; i < list.length; i++){
@@ -111,6 +120,10 @@ var aPostSelected = function(index){
 
   document.getElementById("selFeedWrapper").innerHTML =
    "<a href='javascript:backToCurrFeeds()' class='backButton'> Back </a>"+  markUp;
+      if(ENV.screen.small){
+        $("#myFeedWrapper, #currFeedWrapper").fadeOut();
+        $("#selFeedWrapper").fadeIn();
+      }
 }
 
 
