@@ -12,6 +12,17 @@
   <script src='uaSpoofing.js'> </script>
   <script>
 
+var AI = {
+  show: function(){
+    var mu = "<div class='acInd fadeBox'>"+
+      '<div class="theSpinner"> </div>' +
+      "</div>";
+    document.body.innerHTML += mu;
+  },
+  hide:function(){
+    $(".acInd").remove();
+  }
+}
 
 var showLoginModal = function()
 {
@@ -51,6 +62,7 @@ var postObjList = null;
 var debug = null;
 
 var aSubSelected = function(index){
+  AI.show();
   var list = document.getElementById("myFeedList").getElementsByClassName("listItem")
   for(var i = 0; i < list.length; i++){
     if(i == index){
@@ -78,7 +90,7 @@ var aSubSelected = function(index){
         $("#myFeedWrapper, #selFeedWrapper").fadeOut();
         $("#currFeedWrapper").fadeIn();
       }
-
+      AI.hide();
   });
 }
 
@@ -98,6 +110,7 @@ function backToCurrFeeds()
 }
 
 var aPostSelected = function(index){
+   AI.show();
   var list = document.getElementById("currFeedWrapper").getElementsByClassName("listItem")
   for(var i = 0; i < list.length; i++){
     if(i == index){
@@ -124,6 +137,7 @@ var aPostSelected = function(index){
         $("#myFeedWrapper, #currFeedWrapper").fadeOut();
         $("#selFeedWrapper").fadeIn();
       }
+      AI.hide();
 }
 
 
@@ -222,6 +236,12 @@ var loadMySubs = function()
     display: none;
   }
 
+  .fadeBox{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.4);
+  }
   </style>
 </head>
 
