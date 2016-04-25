@@ -1,4 +1,4 @@
-fs = require('fs');
+var fs = require('fs');
 var AWS = require('aws-sdk');
 AWS.config.loadFromPath('./credentials.json');
 var s3 = new AWS.S3();
@@ -15,7 +15,7 @@ app.get("/", function (req, res) {
       res.redirect("/index.html");
 });
 
-app.post('/uploadFile', isLoggedIn, function(req, res){
+app.post('/uploadFile', function(req, res){
         var intname = req.body.fileInput;
         var filename = req.files.input.name;
         var fileType =  req.files.input.type;
