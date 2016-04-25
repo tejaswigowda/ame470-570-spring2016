@@ -1,8 +1,31 @@
 <html>
 <head>
+<script src='jquery-2.2.1.min.js'> </script>
+<script>
+var fileUploaded = function()
+{
+   var file = $('#theFileUploader').get(0);
+   var FR = new FileReader();
+   FR.onload = function(e) {
+      var data = e.target.result;
+      console.log(data);
+
+      var fd = new FormData();
+      var fileInput = userID + brandID + "splash.png";
+      fd.append('fileInput', fileInput);
+      fd.append('data', base64St);
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(e) {  
+      };
+      xhr.open("POST", "/uploadImage", true);
+      xhr.send(fd);
+   };  
+   FR.readAsDataURL( file.files[0] );
+}
+</script>
 </head>
 
 <body>
-  <input type='file'> 
+  <input type='file' id='theFileUploader' onchange='fileUploaded()'> 
 </body>
 </html>
