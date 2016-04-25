@@ -9,11 +9,14 @@ var fileUploaded = function()
    FR.onload = function(e) {
       var data = e.target.result;
       console.log(data);
+      var fileObj = $('#theFileUploader').get(0).files[0]
+      var filename = fileObj.name;
+      var ext = 
 
       var fd = new FormData();
-      var fileInput = userID + brandID + "splash.png";
+      var fileInput = 
       fd.append('fileInput', fileInput);
-      fd.append('data', base64St);
+      fd.append('data', data);
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function(e) {  
       };
